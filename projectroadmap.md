@@ -21,7 +21,7 @@ Link to Project:
 <br><br>
 
 Links to other code sources:
- [Simple Inventory System](https://code-projects.org/simple-inventory-system-in-python-with-source-code/)
+ [Simple Inventory System](https://code-projects.org/simple-inventory-system-in-python-with-source-code/)<br>
  [KSU Simple Inventory System](https://github.com/ksu-is/simple-inventory)
 
 <br><br>
@@ -31,22 +31,22 @@ Links to other code sources:
 
 Develop Steps to be completed:
 
-[x] 1. find related repository and evaluate it
+-[x] 1. find related repository and evaluate it
 
-[x] 2.  Create Project Repository
+-[x] 2.  Create Project Repository
 
-[x] 3.  Create developement checklist
+-[x] 3.  Create developement checklist
 
-[X] 4.  Create database
+-[X] 4.  Create database
 
-[X] 5.  Create database managment tools (add, remove, checkout, change location)
+-[X] 5.  Create database managment tools (add, remove, checkout, change location)
 
-[X] 6.  Create database managment GUI
+-[X] 6.  Create database managment GUI
 
-[X] 7.  Link GUI to database system
+-[X] 7.  Link GUI to database system
 
-[ ] 8.  Test the repository and fix any issues
+-[ ] 8.  Test the repository and fix any issues
 
-[ ] 9.  Complete README documentation
+-[ ] 9.  Complete README documentation
 
-[ ] 10. Turn in the project
+-[ ] 10. Turn in the project
