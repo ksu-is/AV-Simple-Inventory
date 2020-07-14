@@ -45,13 +45,13 @@ def Database():
         conn.commit()
 
 def Exit():
-    result = tkMessageBox.askquestion('Simple Inventory System', 'Are you sure you want to exit?', icon="warning")
+    result = tkMessageBox.askquestion('AV Inventory System', 'Are you sure you want to exit?', icon="warning")
     if result == 'yes':
         root.destroy()
         exit()
 
 def Exit2():
-    result = tkMessageBox.askquestion('Simple Inventory System', 'Are you sure you want to exit?', icon="warning")
+    result = tkMessageBox.askquestion('AV Inventory System', 'Are you sure you want to exit?', icon="warning")
     if result == 'yes':
         Home.destroy()
         exit()
@@ -59,7 +59,7 @@ def Exit2():
 def ShowLoginForm():
     global loginform
     loginform = Toplevel()
-    loginform.title("Simple Inventory System/Account Login")
+    loginform.title("AV Inventory System/Account Login")
     width = 600
     height = 500
     screen_width = root.winfo_screenwidth()
@@ -72,22 +72,22 @@ def ShowLoginForm():
     
 def LoginForm():
     global lbl_result
-    TopLoginForm = Frame(loginform, width=600, height=100, bd=1, relief=SOLID)
-    TopLoginForm.pack(side=TOP, pady=20)
-    lbl_text = Label(TopLoginForm, text="Administrator Login", font=('arial', 18), width=600)
-    lbl_text.pack(fill=X)
+    #TopLoginForm = Frame(loginform, width=600, height=100, bd=1, relief=SOLID)
+    #TopLoginForm.pack(side=TOP, pady=20)
+    #lbl_text = Label(TopLoginForm, text="Administrator Login", font=('arial', 18), width=600)
+    #lbl_text.pack(fill=X)
     MidLoginForm = Frame(loginform, width=600)
     MidLoginForm.pack(side=TOP, pady=50)
-    lbl_username = Label(MidLoginForm, text="Username:", font=('arial', 25), bd=18)
-    lbl_username.grid(row=0)
-    lbl_password = Label(MidLoginForm, text="Password:", font=('arial', 25), bd=18)
-    lbl_password.grid(row=1)
-    lbl_result = Label(MidLoginForm, text="", font=('arial', 18))
-    lbl_result.grid(row=3, columnspan=2)
-    username = Entry(MidLoginForm, textvariable=USERNAME, font=('arial', 25), width=15)
-    username.grid(row=0, column=1)
-    password = Entry(MidLoginForm, textvariable=PASSWORD, font=('arial', 25), width=15, show="*")
-    password.grid(row=1, column=1)
+    #lbl_username = Label(MidLoginForm, text="Username:", font=('arial', 25), bd=18)
+    #lbl_username.grid(row=0)
+    #lbl_password = Label(MidLoginForm, text="Password:", font=('arial', 25), bd=18)
+    #lbl_password.grid(row=1)
+    #lbl_result = Label(MidLoginForm, text="", font=('arial', 18))
+    #lbl_result.grid(row=3, columnspan=2)
+    #username = Entry(MidLoginForm, textvariable=USERNAME, font=('arial', 25), width=15)
+    #username.grid(row=0, column=1)
+    #password = Entry(MidLoginForm, textvariable=PASSWORD, font=('arial', 25), width=15, show="*")
+    #password.grid(row=1, column=1)
     btn_login = Button(MidLoginForm, text="Login", font=('arial', 18), width=30, command=Login)
     btn_login.grid(row=2, columnspan=2, pady=20)
     btn_login.bind('<Return>', Login)
@@ -95,7 +95,7 @@ def LoginForm():
 def Home():
     global Home
     Home = Tk()
-    Home.title("Simple Inventory System/Home")
+    Home.title("AV Inventory System/Home")
     width = 1024
     height = 520
     screen_width = Home.winfo_screenwidth()
@@ -106,7 +106,7 @@ def Home():
     Home.resizable(0, 0)
     Title = Frame(Home, bd=1, relief=SOLID)
     Title.pack(pady=10)
-    lbl_display = Label(Title, text="Simple Inventory System", font=('arial', 45))
+    lbl_display = Label(Title, text="AV Inventory System", font=('arial', 45))
     lbl_display.pack()
     menubar = Menu(Home)
     filemenu = Menu(menubar, tearoff=0)
@@ -123,7 +123,7 @@ def Home():
 def ShowAddNew():
     global addnewform
     addnewform = Toplevel()
-    addnewform.title("Simple Inventory System/Add new")
+    addnewform.title("AV Inventory System/Add new")
     width = 600
     height = 500
     screen_width = Home.winfo_screenwidth()
@@ -234,7 +234,7 @@ def Delete():
     if not tree.selection():
        print("ERROR")
     else:
-        result = tkMessageBox.askquestion('Simple Inventory System', 'Are you sure you want to delete this record?', icon="warning")
+        result = tkMessageBox.askquestion('AV Inventory System', 'Are you sure you want to delete this record?', icon="warning")
         if result == 'yes':
             curItem = tree.focus()
             contents =(tree.item(curItem))
@@ -250,7 +250,7 @@ def Delete():
 def ShowView():
     global viewform
     viewform = Toplevel()
-    viewform.title("Simple Inventory System/View Product")
+    viewform.title("AV Inventory System/View Product")
     width = 600
     height = 400
     screen_width = Home.winfo_screenwidth()
@@ -262,7 +262,7 @@ def ShowView():
     ViewForm()
 
 def Logout():
-    result = tkMessageBox.askquestion('Simple Inventory System', 'Are you sure you want to logout?', icon="warning")
+    result = tkMessageBox.askquestion('AV Inventory System', 'Are you sure you want to logout?', icon="warning")
     if result == 'yes': 
         admin_id = ""
         root.deiconify()
@@ -271,22 +271,22 @@ def Logout():
 def Login(event=None):
     global admin_id
     Database()
-    if USERNAME.get == "" or PASSWORD.get() == "":
-        lbl_result.config(text="Please complete the required field!", fg="red")
-    else:
-        cursor.execute("SELECT * FROM `admin` WHERE `username` = ? AND `password` = ?", (USERNAME.get(), PASSWORD.get()))
-        if cursor.fetchone() is not None:
-            cursor.execute("SELECT * FROM `admin` WHERE `username` = ? AND `password` = ?", (USERNAME.get(), PASSWORD.get()))
-            data = cursor.fetchone()
-            admin_id = data[0]
-            USERNAME.set("")
-            PASSWORD.set("")
-            lbl_result.config(text="")
-            ShowHome()
-        else:
-            lbl_result.config(text="Invalid username or password", fg="red")
-            USERNAME.set("")
-            PASSWORD.set("")
+ #   if USERNAME.get == "" or PASSWORD.get() == "":
+ #       lbl_result.config(text="Please complete the required field!", fg="red")
+ #   else:
+ #       cursor.execute("SELECT * FROM `admin` WHERE `username` = ? AND `password` = ?", (USERNAME.get(), PASSWORD.get()))
+ #       if cursor.fetchone() is not None:
+ #           cursor.execute("SELECT * FROM `admin` WHERE `username` = ? AND `password` = ?", (USERNAME.get(), PASSWORD.get()))
+ #           data = cursor.fetchone()
+ #           admin_id = data[0]
+ #           USERNAME.set("")
+ #           PASSWORD.set("")
+ #           lbl_result.config(text="")
+    ShowHome()
+ #       else:
+ #           lbl_result.config(text="Invalid username or password", fg="red")
+ #           USERNAME.set("")
+ #           PASSWORD.set("")
     cursor.close()
     conn.close() 
 
@@ -309,7 +309,7 @@ Title = Frame(root, bd=1, relief=SOLID)
 Title.pack(pady=10)
 
 #========================================LABEL WIDGET=====================================
-lbl_display = Label(Title, text="Simple Inventory System", font=('arial', 45))
+lbl_display = Label(Title, text="Audio/Video Simple Inventory System", font=('arial', 45))
 lbl_display.pack()
 
 #========================================INITIALIZATION===================================

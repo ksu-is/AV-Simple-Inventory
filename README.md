@@ -20,13 +20,13 @@ Develop Steps to be completed:
 
 [x] 3.  Create developement checklist
 
-[ ] 4.  Create database
+[X] 4.  Create database
 
-[ ] 5.  Create database managment tools (add, remove, checkout, change location)
+[X] 5.  Create database managment tools (add, remove, checkout, change location)
 
-[ ] 6.  Create database managment webpage (Local host)
+[X] 6.  Create database managment GUI
 
-[ ] 7.  Link database systems to the web page 
+[X] 7.  Link GUI to database system
 
 [ ] 8.  Test the repository and fix any issues
 
