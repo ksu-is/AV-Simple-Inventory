@@ -43,54 +43,6 @@ def Database():
     if cursor.fetchone() is None:
         cursor.execute("INSERT INTO `admin` (username, password) VALUES('admin', 'admin')")
         conn.commit()
-
-def Exit():
-    result = tkMessageBox.askquestion('AV Inventory System', 'Are you sure you want to exit?', icon="warning")
-    if result == 'yes':
-        root.destroy()
-        exit()
-
-def Exit2():
-    result = tkMessageBox.askquestion('AV Inventory System', 'Are you sure you want to exit?', icon="warning")
-    if result == 'yes':
-        Home.destroy()
-        exit()
-
-def ShowLoginForm():
-    global loginform
-    loginform = Toplevel()
-    loginform.title("AV Inventory System/Account Login")
-    width = 600
-    height = 500
-    screen_width = root.winfo_screenwidth()
-    screen_height = root.winfo_screenheight()
-    x = (screen_width/2) - (width/2)
-    y = (screen_height/2) - (height/2)
-    loginform.resizable(0, 0)
-    loginform.geometry("%dx%d+%d+%d" % (width, height, x, y))
-    LoginForm()
-    
-def LoginForm():
-    global lbl_result
-    #TopLoginForm = Frame(loginform, width=600, height=100, bd=1, relief=SOLID)
-    #TopLoginForm.pack(side=TOP, pady=20)
-    #lbl_text = Label(TopLoginForm, text="Administrator Login", font=('arial', 18), width=600)
-    #lbl_text.pack(fill=X)
-    MidLoginForm = Frame(loginform, width=600)
-    MidLoginForm.pack(side=TOP, pady=50)
-    #lbl_username = Label(MidLoginForm, text="Username:", font=('arial', 25), bd=18)
-    #lbl_username.grid(row=0)
-    #lbl_password = Label(MidLoginForm, text="Password:", font=('arial', 25), bd=18)
-    #lbl_password.grid(row=1)
-    #lbl_result = Label(MidLoginForm, text="", font=('arial', 18))
-    #lbl_result.grid(row=3, columnspan=2)
-    #username = Entry(MidLoginForm, textvariable=USERNAME, font=('arial', 25), width=15)
-    #username.grid(row=0, column=1)
-    #password = Entry(MidLoginForm, textvariable=PASSWORD, font=('arial', 25), width=15, show="*")
-    #password.grid(row=1, column=1)
-    btn_login = Button(MidLoginForm, text="Login", font=('arial', 18), width=30, command=Login)
-    btn_login.grid(row=2, columnspan=2, pady=20)
-    btn_login.bind('<Return>', Login)
     
 def Home():
     global Home
@@ -106,16 +58,13 @@ def Home():
     Home.resizable(0, 0)
     Title = Frame(Home, bd=1, relief=SOLID)
     Title.pack(pady=10)
-    lbl_display = Label(Title, text="AV Inventory System", font=('arial', 45))
+    lbl_display = Label(Title, text="Simple Inventory System", font=('arial', 45))
     lbl_display.pack()
     menubar = Menu(Home)
     filemenu = Menu(menubar, tearoff=0)
     filemenu2 = Menu(menubar, tearoff=0)
-    filemenu.add_command(label="Logout", command=Logout)
-    filemenu.add_command(label="Exit", command=Exit2)
     filemenu2.add_command(label="Add new", command=ShowAddNew)
     filemenu2.add_command(label="View", command=ShowView)
-    menubar.add_cascade(label="Account", menu=filemenu)
     menubar.add_cascade(label="Inventory", menu=filemenu2)
     Home.config(menu=menubar)
     Home.config(bg="#6666ff")
@@ -137,15 +86,15 @@ def ShowAddNew():
 def AddNewForm():
     TopAddNew = Frame(addnewform, width=600, height=100, bd=1, relief=SOLID)
     TopAddNew.pack(side=TOP, pady=20)
-    lbl_text = Label(TopAddNew, text="Add New Product", font=('arial', 18), width=600)
+    lbl_text = Label(TopAddNew, text="Add To Inventory", font=('arial', 18), width=600)
     lbl_text.pack(fill=X)
     MidAddNew = Frame(addnewform, width=600)
     MidAddNew.pack(side=TOP, pady=50)
-    lbl_productname = Label(MidAddNew, text="Product Name:", font=('arial', 25), bd=10)
+    lbl_productname = Label(MidAddNew, text="Item Name:", font=('arial', 25), bd=10)
     lbl_productname.grid(row=0, sticky=W)
-    lbl_qty = Label(MidAddNew, text="Product Quantity:", font=('arial', 25), bd=10)
+    lbl_qty = Label(MidAddNew, text="Quantity:", font=('arial', 25), bd=10)
     lbl_qty.grid(row=1, sticky=W)
-    lbl_Location = Label(MidAddNew, text="Product Location:", font=('arial', 25), bd=10)
+    lbl_Location = Label(MidAddNew, text="Location:", font=('arial', 25), bd=10)
     lbl_Location.grid(row=2, sticky=W)
     productname = Entry(MidAddNew, textvariable=PRODUCT_NAME, font=('arial', 25), width=15)
     productname.grid(row=0, column=1)
@@ -174,7 +123,7 @@ def ViewForm():
     LeftViewForm.pack(side=LEFT, fill=Y)
     MidViewForm = Frame(viewform, width=600)
     MidViewForm.pack(side=RIGHT)
-    lbl_text = Label(TopViewForm, text="View Products", font=('arial', 18), width=600)
+    lbl_text = Label(TopViewForm, text="View Inventory", font=('arial', 18), width=600)
     lbl_text.pack(fill=X)
     lbl_txtsearch = Label(LeftViewForm, text="Search", font=('arial', 15))
     lbl_txtsearch.pack(side=TOP, anchor=W)
@@ -250,7 +199,7 @@ def Delete():
 def ShowView():
     global viewform
     viewform = Toplevel()
-    viewform.title("AV Inventory System/View Product")
+    viewform.title("AV Inventory System/View Inventory")
     width = 600
     height = 400
     screen_width = Home.winfo_screenwidth()
@@ -261,48 +210,18 @@ def ShowView():
     viewform.resizable(0, 0)
     ViewForm()
 
-def Logout():
-    result = tkMessageBox.askquestion('AV Inventory System', 'Are you sure you want to logout?', icon="warning")
-    if result == 'yes': 
-        admin_id = ""
-        root.deiconify()
-        Home.destroy()
-  
-def Login(event=None):
-    global admin_id
-    Database()
- #   if USERNAME.get == "" or PASSWORD.get() == "":
- #       lbl_result.config(text="Please complete the required field!", fg="red")
- #   else:
- #       cursor.execute("SELECT * FROM `admin` WHERE `username` = ? AND `password` = ?", (USERNAME.get(), PASSWORD.get()))
- #       if cursor.fetchone() is not None:
- #           cursor.execute("SELECT * FROM `admin` WHERE `username` = ? AND `password` = ?", (USERNAME.get(), PASSWORD.get()))
- #           data = cursor.fetchone()
- #           admin_id = data[0]
- #           USERNAME.set("")
- #           PASSWORD.set("")
- #           lbl_result.config(text="")
-    ShowHome()
- #       else:
- #           lbl_result.config(text="Invalid username or password", fg="red")
- #           USERNAME.set("")
- #           PASSWORD.set("")
-    cursor.close()
-    conn.close() 
-
 def ShowHome():
     root.withdraw()
     Home()
-    loginform.destroy()
+    
 
 
 #========================================MENUBAR WIDGETS==================================
 menubar = Menu(root)
 filemenu = Menu(menubar, tearoff=0)
-filemenu.add_command(label="Account", command=ShowLoginForm)
-filemenu.add_command(label="Exit", command=Exit)
 menubar.add_cascade(label="File", menu=filemenu)
 root.config(menu=menubar)
+ShowHome()
 
 #========================================FRAME============================================
 Title = Frame(root, bd=1, relief=SOLID)
