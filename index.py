@@ -13,15 +13,6 @@ import tkinter.ttk as ttk
 root = Tk()
 root.title("AV Inventory System")
 
-width = 1024
-height = 520
-screen_width = root.winfo_screenwidth()
-screen_height = root.winfo_screenheight()
-x = (screen_width/2) - (width/2)
-y = (screen_height/2) - (height/2)
-root.geometry("%dx%d+%d+%d" % (width, height, x, y))
-root.resizable(0, 0)
-root.config(bg="#6666ff")
 
 #========================================VARIABLES========================================
 USERNAME = StringVar()
@@ -67,7 +58,7 @@ def Home():
     filemenu2.add_command(label="View", command=ShowView)
     menubar.add_cascade(label="Inventory", menu=filemenu2)
     Home.config(menu=menubar)
-    Home.config(bg="#6666ff")
+    Home.config(bg="#f0f0f0")
 
 def ShowAddNew():
     global addnewform
@@ -102,7 +93,7 @@ def AddNewForm():
     productqty.grid(row=1, column=1)
     productLocation = Entry(MidAddNew, textvariable=PRODUCT_Location, font=('arial', 25), width=15)
     productLocation.grid(row=2, column=1)
-    btn_add = Button(MidAddNew, text="Save", font=('arial', 18), width=30, bg="#009ACD", command=AddNew)
+    btn_add = Button(MidAddNew, text="Save", font=('arial', 18), width=30, bg="#00ad00", command=AddNew)
     btn_add.grid(row=3, columnspan=2, pady=20)
 
 def AddNew():
@@ -143,9 +134,9 @@ def ViewForm():
     scrollbarx.config(command=tree.xview)
     scrollbarx.pack(side=BOTTOM, fill=X)
     tree.heading('ProductID', text="ProductID",anchor=W)
-    tree.heading('Product Name', text="Product Name",anchor=W)
-    tree.heading('Product Qty', text="Product Qty",anchor=W)
-    tree.heading('Product Location', text="Product Location",anchor=W)
+    tree.heading('Product Name', text="Item Name",anchor=W)
+    tree.heading('Product Qty', text="Quantity",anchor=W)
+    tree.heading('Product Location', text="Location",anchor=W)
     tree.column('#0', stretch=NO, minwidth=0, width=0)
     tree.column('#1', stretch=NO, minwidth=0, width=0)
     tree.column('#2', stretch=NO, minwidth=0, width=200)
